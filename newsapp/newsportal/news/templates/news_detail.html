@@ -1,0 +1,9 @@
+{% extends 'default.html' %}
+
+{% block content %}
+  <h2>{{ article.title }}</h2>
+  <p>{{ article.published_date }}</p>
+  <p>{{ article.content }}</p>
+  <a href="{% url 'news_edit' article.id %}">Edit</a>
+  <a href="{% url 'news_delete' article.id %}">Delete</a>
+{% endblock %}
