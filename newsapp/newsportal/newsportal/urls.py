@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/', include('news.urls')),  # Подключаем URL-ы приложения news
+    path('', include('news.urls')),  # Подключение вашего приложения
 ]

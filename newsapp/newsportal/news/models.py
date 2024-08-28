@@ -1,54 +1,49 @@
 from django.db import models
-from django.db.models import Sum
-from django.contrib.auth.decorators import login_required, permission_required
-from django.shortcuts import render, redirect
+from django.db.models import Sum, F
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete
+from django.core.cache import cache
 from .tasks import send_notification
 
-@login_required
-@permission_required('news.add_article', raise_exception=True)
-def create_article(request):
-    if request.method == 'POST':
-        # Пример логики создания статьи
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-        category_ids = request.POST.getlist('categories')
 
-        # Получаем текущего автора
-        author = Author.objects.get(authorUser=request.user)
+# Модель для создания статьи
+class Category(models.Model):
+    name = models.CharField(max_length=255, unique=True)
 
-        # Создаем пост
-        post = Post.objects.create(
-            author=author,
-            title=title,
-            text=content,
-            categoryType='AR'
-        )
+    def __str__(self):
+        return self.name
 
-        # Добавляем категории
-        post.categories.set(Category.objects.filter(id__in=category_ids))
-
-        return redirect('some_view_name')  # Замените 'some_view_name' на имя вашего представления
-
-    return render(request, 'create_article.html')
-
-@login_required
-@permission_required('news.change_article', raise_exception=True)
-def edit_article(request, article_id):
-    # Ваша логика для редактирования статьи
-    pass
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    published_date = models.DateTimeField()
-    post_type = models.CharField(max_length=10, choices=[('news', 'Новость'), ('article', 'Статья')], default='article')
+    published_date = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)  # Сделать опциональным
 
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.set(f'article_{self.id}', self, timeout=None)  # Кэшируем статью без таймаута
+
+    def delete(self, *args, **kwargs):
+        cache.delete(f'article_{self.id}')
+        super().delete(*args, **kwargs)
+
+
+@receiver(post_save, sender=Article)
+def clear_cache_on_article_save(sender, instance, **kwargs):
+    cache.set(f'article_{instance.id}', instance, timeout=None)
+
+
+@receiver(post_delete, sender=Article)
+def clear_cache_on_article_delete(sender, instance, **kwargs):
+    cache.delete(f'article_{instance.id}')
+
+
+# Модель для авторов
 class Author(models.Model):
     authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.SmallIntegerField(default=0)
@@ -63,13 +58,10 @@ class Author(models.Model):
         self.ratingAuthor = pRat * 3 + cRat
         self.save()
 
-class Category(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    subscribers = models.ManyToManyField(User, through='Subscriber', blank=True)
 
-    def __str__(self):
-        return self.name
+# Модель для категорий
 
+# Модель для постов
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
@@ -87,12 +79,12 @@ class Post(models.Model):
     rating = models.SmallIntegerField(default=0)
 
     def like(self):
-        self.rating += 1
-        self.save()
+        self.rating = F('rating') + 1
+        self.save(update_fields=['rating'])
 
     def dislike(self):
-        self.rating -= 1
-        self.save()
+        self.rating = F('rating') - 1
+        self.save(update_fields=['rating'])
 
     def preview(self):
         return f'{self.text[:123]} ... {self.rating}'
@@ -100,12 +92,14 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-# Сигнал для отправки уведомлений при создании поста
+
 @receiver(post_save, sender=Post)
 def notify_subscribers(sender, instance, created, **kwargs):
     if created and instance.categoryType == Post.NEWS:
         send_notification.delay(instance.id)
 
+
+# Модель для связи постов и категорий
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -116,6 +110,8 @@ class PostCategory(models.Model):
     def __str__(self):
         return f"{self.post.title} - {self.category.name}"
 
+
+# Модель для комментариев
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -124,12 +120,12 @@ class Comment(models.Model):
     rating = models.SmallIntegerField(default=0)
 
     def like(self):
-        self.rating += 1
-        self.save()
+        self.rating = F('rating') + 1
+        self.save(update_fields=['rating'])
 
     def dislike(self):
-        self.rating -= 1
-        self.save()
+        self.rating = F('rating') - 1
+        self.save(update_fields=['rating'])
 
     def preview(self):
         return f'{self.text[:123]} ... {self.rating}'
@@ -137,6 +133,8 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment by {self.user.username} on {self.post.title}"
 
+
+# Модель для подписчиков на категории
 class Subscriber(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

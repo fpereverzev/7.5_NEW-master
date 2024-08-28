@@ -1,9 +1,18 @@
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import post_save, post_delete, m2m_changed
 from django.dispatch import receiver
-from .models import Post, PostCategory
+from django.core.cache import cache
+from .models import Post, Article, Category
+from .tasks import send_notification
 
-@receiver(m2m_changed, sender=Post.categories.through)
-def post_categories_changed(sender, instance, action, **kwargs):
-    if action == 'post_add':
-        # Логика, которую нужно выполнить после добавления категорий
-        print(f'Categories added to post {instance.title}')
+@receiver(post_save, sender=Article)
+def clear_cache_on_article_save(sender, instance, **kwargs):
+    cache.set(f'article_{instance.id}', instance, timeout=None)
+
+@receiver(post_delete, sender=Article)
+def clear_cache_on_article_delete(sender, instance, **kwargs):
+    cache.delete(f'article_{instance.id}')
+
+@receiver(post_save, sender=Post)
+def notify_subscribers(sender, instance, created, **kwargs):
+    if created and instance.categoryType == Post.NEWS:
+        send_notification.delay(instance.id)
