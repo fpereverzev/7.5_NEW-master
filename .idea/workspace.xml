@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e380c35c-7b63-40b0-854d-d38a4f9d395e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/news_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/article_confirm_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/article_confirm_delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/article_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/article_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/default.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/new_post_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/new_post_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news_confirm_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/news_confirm_delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/news_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/news_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/subscriptions.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/subscriptions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/templates/weekly_newsletter_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/templates/news/weekly_newsletter_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/news/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/newsportal/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/newsportal/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newsapp/newsportal/newsportal/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsapp/newsportal/newsportal/urls.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2kY7k6eBfL68NXc0NNzocWmpsph" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/macp/Desktop/6.7.1_NEW-master&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/newsapp/newsportal/news/templates" />
+      <recent name="$PROJECT_DIR$/newsapp/newsportal/news/templates/news" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-eebebe6c2be4-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15325.20" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e380c35c-7b63-40b0-854d-d38a4f9d395e" name="Changes" comment="" />
+      <created>1723448796067</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723448796067</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/newsapp/newsportal/newsportal/urls.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/newsapp/newsportal/news/urls.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

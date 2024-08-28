@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать статью</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Создать статью</h1>
+    <form method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken"
+               value="sGd1ntXO8VWKBJJA16cW1UU5UISJPW1JxHVCoIkpXqERPjjYmJR6QAOSwnmtQeqI">
+        <div class="form-group">
+            <label for="id_title">Заголовок</label>
+            <input type="text" name="title" maxlength="200" required id="id_title">
+
+        </div>
+        <div class="form-group">
+            <label for="id_content">Содержание</label>
+            <textarea name="content" cols="40" rows="10" required id="id_content">
+</textarea>
+
+        </div>
+        <div class="form-group">
+            <label for="id_category">Категория</label>
+            <select name="category" required id="id_category">
+                <option value="" selected>Выберите категорию</option>
+
+                <option value="1">Tech</option>
+
+                <option value="2">IT</option>
+
+                <option value="3">Cars</option>
+
+            </select>
+
+        </div>
+        <button type="submit">Создать статью</button>
+    </form>
+</div>
+</body>
+</html>
